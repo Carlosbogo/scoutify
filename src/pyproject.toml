@@ -8,6 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 selenium = "^4.24.0"
+google-cloud-bigquery = "^3.25.0"
 
 
 [build-system]
