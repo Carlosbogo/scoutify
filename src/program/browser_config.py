@@ -7,3 +7,5 @@ language = "en"
 config.add_argument(f"--lang={language}")
 config.add_argument("--disable-search-engine-choice-screen")
 config.add_argument("--headless=new")
+config.add_argument("--no-sandbox")
+config.add_argument("--disable-gpu")
