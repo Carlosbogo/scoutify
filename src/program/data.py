@@ -1,5 +1,6 @@
 import csv
 import google.cloud.storage
+import constants as const
 from program.helpers.logging import logger
 from typing import List
 
@@ -17,7 +18,7 @@ def download_from_bucket(
     Returns:
     - None
     """
-    storage_client = google.cloud.storage.Client()
+    storage_client = google.cloud.storage.Client(project=const.GCP_PROJECT)
     bucket = storage_client.bucket(bucket_name)
     blob = bucket.blob(source_blob_name)
 
@@ -73,7 +74,7 @@ def upload_to_bucket(
     Returns:
     - None
     """
-    storage_client = google.cloud.storage.Client()
+    storage_client = google.cloud.storage.Client(project=const.GCP_PROJECT)
     bucket = storage_client.bucket(bucket_name)
     blob = bucket.blob(destination_blob_name)
 
