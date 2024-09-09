@@ -1,0 +1,6 @@
+import os
+
+GCP_PROJECT = os.getenv("GCP_PROJECT")
+RATINGS_BUCKET_ID = os.getenv("RATINGS_BUCKET_ID")
+DOWNLOADS_FOLDER = os.getenv("DOWNLOADS_FOLDER")
+RATINGS_CSV = os.getenv("RATINGS_CSV")
