@@ -1,5 +1,4 @@
 
-import logging
 import time
 import os
 
@@ -7,11 +6,7 @@ import program.helpers.popups as popups
 from program.ratings import get_rating
 from data.parse_data import parse
 from program.driver import driver
-
-
-
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+from program.helpers.logging import logger
 
 
 ratings = {}
