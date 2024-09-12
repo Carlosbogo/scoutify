@@ -62,13 +62,13 @@ def write_csv(data: List[List[str]], filepath: str, delimiter: str = ",") -> Non
 
 
 def upload_to_bucket(
-    bucket_name: str, source_file_name: str, destination_blob_name: str
+    bucket_name: str, source_file_path: str, destination_blob_name: str
 ) -> None:
     """
     Uploads a file to a GCP storage bucket.
     Params:
     - bucket_name: str - the name of the bucket.
-    - source_file_name: str - the name of the file to upload.
+    - source_file_path: str - the path of the file to upload.
     - destination_blob_name: str - the name of the blob to create.
 
     Returns:
@@ -78,8 +78,8 @@ def upload_to_bucket(
     bucket = storage_client.bucket(bucket_name)
     blob = bucket.blob(destination_blob_name)
 
-    logger.info(f"Uploading {source_file_name} to {destination_blob_name}.")
+    logger.info(f"Uploading {source_file_path} to {destination_blob_name}.")
 
-    blob.upload_from_filename(source_file_name)
+    blob.upload_from_filename(source_file_path)
 
-    logger.info(f"File {source_file_name} uploaded to {destination_blob_name}.")
+    logger.info(f"File {source_file_path} uploaded to {destination_blob_name}.")
