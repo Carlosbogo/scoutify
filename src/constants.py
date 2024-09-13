@@ -1,4 +1,7 @@
 import os
+import dotenv
+
+dotenv.load_dotenv(".env")
 
 GCP_PROJECT = os.getenv("GCP_PROJECT")
 INPUT_BUCKET_NAME = os.getenv("INPUT_BUCKET_NAME")
