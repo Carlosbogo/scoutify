@@ -26,7 +26,7 @@ if const.LOCAL_DEVELOPMENT:
     except Exception as e:
         logger.error("Error rejecting Google privacy popup.")
 
-driver.implicitly_wait(5)
+
 for c in companies:
     time.sleep(5)
     try:
