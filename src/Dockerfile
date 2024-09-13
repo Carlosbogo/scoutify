@@ -4,6 +4,9 @@ FROM python:3.11-slim
 # Step 2: Set the working directory in the container
 WORKDIR /app
 
+RUN apt-get update && \
+    apt-get install -y chromium
+
 # Step 3: Copy the current directory contents into the container at /app
 COPY . /app
 
