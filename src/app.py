@@ -4,13 +4,19 @@ import os
 
 import program.helpers.popups as popups
 from program.ratings import get_rating
-from data.parse_data import parse
+import constants as const
+import program.data as data
 from program.driver import driver
 from program.helpers.logging import logger
 
 
 ratings = {}
-companies = parse(os.path.join(os.getcwd(), "data\\remote_companies.csv"))
+download_path = os.path.join(const.DOWNLOADS_FOLDER, "remote_in_spain.csv")
+logger.info(f"Download path: {download_path}")
+
+
+data.download_from_bucket(const.INPUT_BUCKET_NAME, "remote_in_spain.csv", download_path)
+companies = data.parse("data/remote_in_spain.csv")
 
 
 if const.LOCAL_DEVELOPMENT:
@@ -20,17 +26,20 @@ if const.LOCAL_DEVELOPMENT:
     except Exception as e:
         logger.error("Error rejecting Google privacy popup.")
 
-try:
-    driver.implicitly_wait(5)
-    for c in companies:
+driver.implicitly_wait(5)
+for c in companies:
+    time.sleep(5)
+    try:
         ratings.update(get_rating(driver, c[0]))
-    
-except Exception as e:
-    print(repr(e))
-    print(e)
-    time.sleep(2)
+    except Exception as e:
+        logger.error(f"Error getting rating for {c[0]}")
+        logger.error(repr(e))
+        continue
 
-finally:
-    driver.quit()
+data.write_csv(
+    [[k, v] for k, v in ratings.items()], "ratings.csv"
+)
+data.upload_to_bucket(const.RATINGS_BUCKET_NAME, "ratings.csv", "ratings.csv")
+driver.quit()
 
-print("finished")
+logger.info("Ratings collected and uploaded to bucket.")
