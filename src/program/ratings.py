@@ -22,7 +22,7 @@ def get_rating(driver, company):
             attempt += 1
     if attempt == 5:
         logger.error(f"Could not get rating for {company}. Skipping...")
-        return {company: None}
+        return {company: 0}
     else:
         rating = float(rating_msg.split(" ")[1].replace(",", "."))
         logger.info(f"Rating for {company}: {rating}")
