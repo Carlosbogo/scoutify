@@ -14,7 +14,6 @@ def get_rating(driver, company):
     while attempt <= max_attempts:
         try:
             rating_msg = driver.find_element(By.XPATH, '//span[text()[contains(., "Rating")]]').text
-            logger.info(f"Rating for {company}: {rating}")
             break
         except:
             logger.error(f"Error getting rating. Attempt {attempt} of {max_attempts}")
@@ -25,4 +24,5 @@ def get_rating(driver, company):
         return [company, 0]
     else:
         rating = float(rating_msg.split(" ")[1].replace(",", "."))
+        logger.info(f"Rating for {company}: {rating_msg}")
         return [company, rating]
