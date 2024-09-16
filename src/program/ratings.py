@@ -32,7 +32,8 @@ def get_text(driver, text, max_attempts=5):
 
 def get_rating(driver, company):
     """
-    Gets the rating and number of votes for a company from Glassdoor.
+    Gets the Glassdoor rating and number of votes for a company
+    using Google search results.
 
     Args:
         driver: Selenium WebDriver
