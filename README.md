@@ -31,3 +31,42 @@ The idea of this repository is to figure out a way to automate some of the most 
   - [Installation](https://learn.hashicorp.com/tutorials/terraform/install-cli).
   - [Documentation](https://learn.hashicorp.com/collections/terraform/gcp-get-started).
 
+ ## Set up
+
+1. **Create a Google Cloud Platform account and project**
+
+   - Go to the [Google Cloud Console](https://cloud.google.com) and create an account.
+   - Create a new project.
+   - Enable billing in the project.
+
+2. **Enable the necessary APIs**
+   - Go to the [APIs & Services](https://console.cloud.google.com/apis/dashboard) section in the Google Cloud Console.
+   - Enable the following APIs:
+     - Cloud Compute Engine API
+     - Docker Registry API
+     - Cloud Run API
+
+3. **Set up the Google Cloud CLI**
+   - Install the Google Cloud CLI by following the instructions [here](https://cloud.google.com/sdk/docs/install).
+   - Authenticate the CLI by running `gcloud auth login`.
+   - Set the default project by running `gcloud config set project PROJECT_ID`, replacing `PROJECT_ID` with the ID of the project you created.
+
+4. **Set up Docker**
+    - Install Docker by following the instructions [here](https://docs.docker.com/get-docker/).
+    - Start the Docker daemon by running `Docker Desktop` if you are on Windows or Mac or by running `sudo systemctl start docker`.
+    - Check that Docker is running by running `docker --version`.
+
+5. **Set up Python**
+    - Install Python by following the instructions [here](https://www.python.org/downloads/).
+    - Check that Python is installed by running `python --version`.
+    - Install Poetry by following the instructions [here](https://python-poetry.org/docs/#installation).
+    - Check that Poetry is installed by running `poetry --version`.
+
+6. **Download the code**
+    - Clone the repository by running `git clone`.
+    - Change into the `src` directory by running `cd companies-scraper`.
+    - Install the dependencies by running `poetry install`.
+
+After following these steps, you should have all the necessary tools installed and the code downloaded. You can now start deploying the infrastructure and running the code.
+
+The Terraform code is located in a different repository for security reasons. If you want to access it, please contact me. However, it is also possible to manually create the infrastructure and run the code without using Terraform if needed.
