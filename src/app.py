@@ -30,15 +30,13 @@ if const.LOCAL_DEVELOPMENT:
 for c in companies:
     time.sleep(5)
     try:
-        ratings.update(get_rating(driver, c[0]))
+        ratings.append(get_rating(driver, c[0]) + [c[1]])
     except Exception as e:
         logger.error(f"Error getting rating for {c[0]}")
         logger.error(repr(e))
         continue
 
-data.write_csv(
-    [[k, v] for k, v in ratings.items()], "ratings.csv"
-)
+data.write_csv(ratings, "ratings.csv")
 data.upload_to_bucket(const.RATINGS_BUCKET_NAME, "ratings.csv", "ratings.csv")
 driver.quit()
 
