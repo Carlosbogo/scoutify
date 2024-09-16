@@ -5,6 +5,17 @@ from program.helpers.logging import logger
 
 
 def get_text(driver, text, max_attempts=5):
+    """
+    Gets the contents of an element that contains the given text.
+
+    Args:
+        driver: Selenium WebDriver
+        text: Text to search for
+        max_attempts: Maximum number of attempts to get the text
+
+    Returns:
+        str: Text of the element
+    """
     attempt = 1
     xpath = f'//span[text()[contains(., "{text}")]]'
     value = 0
@@ -20,6 +31,16 @@ def get_text(driver, text, max_attempts=5):
 
 
 def get_rating(driver, company):
+    """
+    Gets the rating and number of votes for a company from Glassdoor.
+
+    Args:
+        driver: Selenium WebDriver
+        company: Name of the company
+
+    Returns:
+        list: [Company name, rating, number of votes]
+    """
     logger.info(f"Getting rating for {company}")
     search = f"https://www.google.com/search?q={company}+glassdoor"
     driver.get(search)
