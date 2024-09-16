@@ -66,8 +66,9 @@ def get_rating(driver, company):
         rating = 0
 
     if votes_msg:
-        # We remove commas in case the value exceeds 1,000
-        votes = int(votes_msg.split(" ")[0].replace(",", ""))
+        # We remove commas and dots in case the value exceeds 1,000
+        # (taking dots into account could be useful for local testing)
+        votes = int(votes_msg.split(" ")[0].replace(",", ""). replace(".", ""))
     else:
         votes = 0
 
