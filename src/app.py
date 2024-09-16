@@ -22,7 +22,6 @@ companies = data.parse("data/remote_in_spain.csv")
 if const.LOCAL_DEVELOPMENT:
     try:
         popups.reject_google_privacy_popup(driver, logger)
-        logger.info("Google privacy popup rejected.")
     except Exception as e:
         logger.error("Error rejecting Google privacy popup.")
 
