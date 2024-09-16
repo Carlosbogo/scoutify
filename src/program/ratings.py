@@ -19,12 +19,18 @@ def get_text(driver, text, max_attempts=5):
     attempt = 1
     xpath = f'//span[text()[contains(., "{text}")]]'
     value = 0
+
+    # We try to get the text of the element up to max_attempts times
+    # to avoid errors due to the element not being loaded yet
     while attempt <= max_attempts:
         try:
             value = driver.find_element(By.XPATH, xpath).text
+            # If we get the value, we break the loop
             break
         except:
             logger.error(f"Error getting value. Attempt {attempt} of {max_attempts}")
+            # We set a wait time between attempts to allow the element to load
+            # and to avoid overloading the server
             time.sleep(2)
             attempt += 1
     return value
@@ -43,9 +49,12 @@ def get_rating(driver, company):
         list: [Company name, rating, number of votes]
     """
     logger.info(f"Getting rating for {company}")
+
+    # We search for the company on Google and add "glassdoor" to the query
     search = f"https://www.google.com/search?q={company}+glassdoor"
     driver.get(search)
 
+    # We get the rating and number of votes from the search results
     rating_msg = get_text(driver, "Rating")
     votes_msg = get_text(driver, "vote")
 
@@ -63,4 +72,5 @@ def get_rating(driver, company):
         votes = 0
 
     logger.info(f"Rating for {company}: {rating} with {votes} votes.")
+    # Defult values for rating and votes are both 0
     return [company, rating, votes]
