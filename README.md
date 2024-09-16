@@ -10,6 +10,7 @@ The idea of this repository is to figure out a way to automate some of the most 
 
 - Google Cloud Platform (Account and Project) - As mentioned earlier, to run the code without any changes we will need to have a GCP account and a project into which we can deploy the resources. Although not strictly necessary, [enabling billing](https://cloud.google.com/billing/docs/how-to/modify-project) in our project will make the set up much simpler and quicker.
   - [Google Cloud Console](https://cloud.google.com)
+  - [Documentation](https://cloud.google.com/docs).
   - [Free tier](https://cloud.google.com/free).
 - Google Cloud CLI - It allows us to interact with Google Cloud resources using the command line
   - [Installation](https://cloud.google.com/sdk/docs/install).
