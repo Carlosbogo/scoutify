@@ -10,7 +10,6 @@ from program.driver import driver
 from program.helpers.logging import logger
 
 
-ratings = []
 download_path = os.path.join(const.DOWNLOADS_FOLDER, "remote_in_spain.csv")
 logger.info(f"Download path: {download_path}")
 
@@ -28,6 +27,7 @@ if const.LOCAL_DEVELOPMENT:
         logger.error("Error rejecting Google privacy popup.")
 
 # Get ratings for each company
+ratings = []
 for c in companies:
     time.sleep(5)
     try:
