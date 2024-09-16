@@ -10,7 +10,7 @@ from program.driver import driver
 from program.helpers.logging import logger
 
 
-ratings = {}
+ratings = []
 download_path = os.path.join(const.DOWNLOADS_FOLDER, "remote_in_spain.csv")
 logger.info(f"Download path: {download_path}")
 
