@@ -69,4 +69,4 @@ The idea of this repository is to figure out a way to automate some of the most 
 
 After following these steps, you should have all the necessary tools installed and the code downloaded. You can now start deploying the infrastructure and running the code.
 
-The Terraform code is located in a different repository for security reasons. If you want to access it, please contact me. However, it is also possible to manually create the infrastructure and run the code without using Terraform if needed.
+The Terraform code is located in a different repository for security reasons. If you want to access it, please contact me. However, it is also possible to manually create the infrastructure and run the code without using Terraform by following the instructions in the `docs/manual-setup.md` file.
