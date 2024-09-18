@@ -1,6 +1,7 @@
 # Manually created files
 *setup.txt
 *.csv
+infra
 
 # VS Code
 .vscode/
