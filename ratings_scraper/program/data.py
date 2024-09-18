@@ -24,7 +24,10 @@ def download_from_bucket(
 
     logger.info(f"Downloading blob {source_blob_name}.")
 
-    blob.download_to_filename(destination_file_name)
+    try:
+        blob.download_to_filename(destination_file_name)
+    except Exception as e:
+        logger.error(f"Error downloading blob {source_blob_name}: {e}")
 
     logger.info(f"Blob {source_blob_name} downloaded to {destination_file_name}.")
 
