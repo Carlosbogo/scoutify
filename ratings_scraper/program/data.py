@@ -42,9 +42,16 @@ def parse(filepath: str, delimiter: str = ",") -> List[List[str]]:
     Returns:
     - List[List[str]]: The parsed data as a list of lists.
     """
-    with open(filepath, newline="", encoding="utf8") as f:
-        reader = csv.reader(f, delimiter=delimiter)
-        data = list(reader)
+    try:
+        with open(filepath, newline="", encoding="utf8") as f:
+            reader = csv.reader(f, delimiter=delimiter)
+            data = list(reader)
+    except FileNotFoundError as e:
+        logger.error(f"File {filepath} not found.")
+        data = []
+    except Exception as e:
+        logger.error(f"Error parsing file {filepath}: {e}")
+        data = []
     return data
 
 
