@@ -1,4 +1,4 @@
-# Companies Scraper
+# Scoutify
 
 One of the biggest challenges when looking for new job opportunities is to find out where to apply. Thousands of new job openings are posted in LinkedIn each day, and it's impossible to get through all of them.
 
@@ -64,7 +64,7 @@ The idea of this repository is to figure out a way to automate some of the most 
 
 6. **Download the code**
     - Clone the repository by running `git clone`.
-    - Change into the `src` directory by running `cd companies-scraper`.
+    - Change into the `src` directory by running `cd scoutify`.
     - Install the dependencies by running `poetry install`.
 
 After following these steps, you should have all the necessary tools installed and the code downloaded. You can now start deploying the infrastructure and running the code.
