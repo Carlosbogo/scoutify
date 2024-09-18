@@ -45,5 +45,17 @@ class TestDataFunctions(unittest.TestCase):
 
         os.remove(temp_file_path)
 
+    @patch('google.cloud.storage.Client')
+    def test_upload_to_bucket(self, MockClient):
+        mock_client = MockClient.return_value
+        mock_bucket = mock_client.bucket.return_value
+        mock_blob = mock_bucket.blob.return_value
+
+        upload_to_bucket('test_bucket', 'test_file', 'test_blob')
+
+        mock_client.bucket.assert_called_with('test_bucket')
+        mock_bucket.blob.assert_called_with('test_blob')
+        mock_blob.upload_from_filename.assert_called_with('test_file')
+
 if __name__ == '__main__':
     unittest.main()
