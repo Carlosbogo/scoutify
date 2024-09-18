@@ -51,7 +51,7 @@ def get_rating(driver, company):
     logger.info(f"Getting rating for {company}")
 
     # We search for the company on Google and add "glassdoor" to the query
-    search = f"https://www.google.com/search?q={company}+glassdoor"
+    search = f"https://www.google.com/search?q={'+'.join(company.split())}+glassdoor"
     driver.get(search)
 
     # We get the rating and number of votes from the search results
