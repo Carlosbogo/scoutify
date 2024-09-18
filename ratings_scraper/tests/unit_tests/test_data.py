@@ -19,5 +19,16 @@ class TestDataFunctions(unittest.TestCase):
         mock_bucket.blob.assert_called_with('test_blob')
         mock_blob.download_to_filename.assert_called_with('test_file')
 
+    def test_parse(self):
+        with tempfile.NamedTemporaryFile(delete=False, mode='w', newline='') as temp_file:
+            temp_file.write("col1,col2\nval1,val2\nval3,val4")
+            temp_file_path = temp_file.name
+
+        expected_output = [['col1', 'col2'], ['val1', 'val2'], ['val3', 'val4']]
+        result = parse(temp_file_path)
+        self.assertEqual(result, expected_output)
+
+        os.remove(temp_file_path)
+
 if __name__ == '__main__':
     unittest.main()
