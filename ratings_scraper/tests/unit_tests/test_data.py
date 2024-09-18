@@ -30,5 +30,20 @@ class TestDataFunctions(unittest.TestCase):
 
         os.remove(temp_file_path)
 
+    def test_write_csv(self):
+        data = [['col1', 'col2'], ['val1', 'val2'], ['val3', 'val4']]
+        with tempfile.NamedTemporaryFile(delete=False, mode='w', newline='') as temp_file:
+            temp_file_path = temp_file.name
+
+        write_csv(data, temp_file_path)
+
+        with open(temp_file_path, newline='') as f:
+            reader = csv.reader(f)
+            result = list(reader)
+
+        self.assertEqual(result, data)
+
+        os.remove(temp_file_path)
+
 if __name__ == '__main__':
     unittest.main()
