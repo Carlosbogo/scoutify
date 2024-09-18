@@ -1,5 +1,9 @@
 # Manually created files
 *setup.txt
+*.csv
+
+# VS Code
+.vscode/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
