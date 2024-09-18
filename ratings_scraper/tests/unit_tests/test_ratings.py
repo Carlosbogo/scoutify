@@ -26,5 +26,41 @@ class TestRatings(unittest.TestCase):
         self.assertEqual(driver.find_element.call_count, 5)
         self.assertEqual(mock_logger.error.call_count, 5)
 
+    @patch('program.ratings.get_text')
+    @patch('program.ratings.logger')
+    def test_get_rating_success(self, mock_logger, mock_get_text):
+        """Test get_rating function with a successful result."""
+        driver = MagicMock()
+        mock_get_text.side_effect = ["Rating 4.5", "1,234 votes"]
+
+        result = get_rating(driver, "Test Company")
+        self.assertEqual(result, ["Test Company", 4.5, 1234])
+        driver.get.assert_called_with("https://www.google.com/search?q=Test+Company+glassdoor")
+        mock_logger.info.assert_called_with("Rating for Test Company: 4.5 with 1234 votes.")
+
+    @patch('program.ratings.get_text')
+    @patch('program.ratings.logger')
+    def test_get_rating_no_rating(self, mock_logger, mock_get_text):
+        """Test get_rating function with no rating found."""
+        driver = MagicMock()
+        mock_get_text.side_effect = [None, "1,234 votes"]
+
+        result = get_rating(driver, "Test Company")
+        self.assertEqual(result, ["Test Company", 0, 1234])
+        driver.get.assert_called_with("https://www.google.com/search?q=Test+Company+glassdoor")
+        mock_logger.info.assert_called_with("Rating for Test Company: 0 with 1234 votes.")
+
+    @patch('program.ratings.get_text')
+    @patch('program.ratings.logger')
+    def test_get_rating_no_votes(self, mock_logger, mock_get_text):
+        """Test get_rating function with no votes found."""
+        driver = MagicMock()
+        mock_get_text.side_effect = ["Rating 4.5", None]
+
+        result = get_rating(driver, "Test Company")
+        self.assertEqual(result, ["Test Company", 4.5, 0])
+        driver.get.assert_called_with("https://www.google.com/search?q=Test+Company+glassdoor")
+        mock_logger.info.assert_called_with("Rating for Test Company: 4.5 with 0 votes.")
+
 if __name__ == '__main__':
     unittest.main()
