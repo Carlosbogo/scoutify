@@ -89,7 +89,9 @@ def upload_to_bucket(
     blob = bucket.blob(destination_blob_name)
 
     logger.info(f"Uploading {source_file_path} to {destination_blob_name}.")
-
-    blob.upload_from_filename(source_file_path)
+    try:
+        blob.upload_from_filename(source_file_path)
+    except Exception as e:
+        logger.error(f"Error uploading {source_file_path}: {e}")
 
     logger.info(f"File {source_file_path} uploaded to {destination_blob_name}.")
