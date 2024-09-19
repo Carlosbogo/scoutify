@@ -1,7 +1,7 @@
 import csv
 import google.cloud.storage
 import constants as const
-from program.helpers.logging import logger
+from utils.logging import logger
 from typing import List
 
 

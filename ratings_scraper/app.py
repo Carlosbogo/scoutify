@@ -2,12 +2,12 @@
 import time
 import os
 
-import program.helpers.popups as popups
+import utils.popups as popups
 from program.ratings import get_rating
 import constants as const
 import program.data as data
 from program.driver import driver
-from program.helpers.logging import logger
+from utils.logging import logger
 
 
 download_path = os.path.join(const.DOWNLOADS_FOLDER, "remote_in_spain.csv")

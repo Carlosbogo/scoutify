@@ -1,7 +1,7 @@
 import time
 import os
 from selenium.webdriver.common.by import By
-from program.helpers.logging import logger
+from utils.logging import logger
 
 
 def get_text(driver, text, max_attempts=5):
