@@ -14,6 +14,7 @@ COPY . /app
 # Install the required Python packages
 RUN pip install poetry
 RUN poetry install --no-root
+RUN poetry run pip list
 
 # Expose port 80 to allow external access
 EXPOSE 80
