@@ -2,7 +2,7 @@
 import time
 import os
 
-import utils.popups as popups
+import utils.scraping.popups as popups
 from src.ratings import get_rating
 import constants as const
 import src.data as data
