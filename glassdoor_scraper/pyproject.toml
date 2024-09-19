@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "glassdoor-scraper"
+version = "0.1.0"
+description = "scraper to get company data from glassdoor"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+selenium = "^4.24.0"
+google-cloud-storage = "^2.18.2"
+google-cloud-bigquery = "^3.25.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
