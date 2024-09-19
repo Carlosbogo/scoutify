@@ -1,9 +1,10 @@
 services:
   app:
-    image: gcr.io/companies-parser/glassdoor-parser:
+    image: gcr.io/companies-parser/glassdoor-parser
     working_dir: /app
     volumes:
       - .:/app
+      - ../../utils:/app/utils
     env_file:
       - .env
     ports:
