@@ -1,6 +1,9 @@
 # We use an official Python runtime as a parent image
 FROM python:3.11-slim
 
+# Set the environment variable to prevent Poetry from creating a virtual environment
+ENV POETRY_VIRTUALENVS_CREATE=false
+
 # Set the working directory in the container
 WORKDIR /app
 
@@ -12,7 +15,7 @@ RUN apt-get update && \
 COPY . /app
 
 # Install the required Python packages
-RUN pip install poetry
+RUN pip install --no-cache-dir poetry
 RUN poetry install --no-root
 
 # Expose port 80 to allow external access
