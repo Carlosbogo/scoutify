@@ -1,5 +1,5 @@
 from selenium import webdriver
-from program.browser_config import config
+from src.browser_config import config
 
 driver = webdriver.Chrome(options=config)
 driver.implicitly_wait(10)

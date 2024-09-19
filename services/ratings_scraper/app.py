@@ -3,10 +3,10 @@ import time
 import os
 
 import utils.popups as popups
-from program.ratings import get_rating
+from src.ratings import get_rating
 import constants as const
-import program.data as data
-from program.driver import driver
+import src.data as data
+from src.driver import driver
 from utils.logging import logger
 
 
