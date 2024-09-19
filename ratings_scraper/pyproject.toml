@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "companies-scraper"
+name = "ratings-scraper"
 version = "0.1.0"
 description = ""
 authors = ["Carlosbogo <bogomcar@gmail.com>"]
