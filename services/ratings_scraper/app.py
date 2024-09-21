@@ -15,7 +15,7 @@ logger.info(f"Download path: {download_path}")
 
 # Download and parse companies data, currently the only option is
 # to download a existing CSV file stored in a Google Cloud Storage bucket
-data.download_from_bucket(const.INPUT_BUCKET_NAME, "remote_in_spain.csv", download_path)
+data.download_from_bucket(const.INPUT_BUCKET_NAME, "remote_in_spain.csv", download_path, const.GCP_PROJECT)
 companies = data.parse("data/remote_in_spain.csv")
 
 # Reject Google privacy popup if in local development
@@ -41,7 +41,7 @@ for c in companies:
 # Write ratings to CSV file and upload it to a Google Cloud Storage bucket
 # In the near future we will have a Cloud Run job to forward the data to BigQuery
 data.write_csv(ratings, "ratings.csv")
-data.upload_to_bucket(const.RATINGS_BUCKET_NAME, "ratings.csv", "ratings.csv")
+data.upload_to_bucket(const.RATINGS_BUCKET_NAME, "ratings.csv", "ratings.csv", const.GCP_PROJECT)
 driver.quit()
 
 logger.info("Ratings collected and uploaded to bucket.")
