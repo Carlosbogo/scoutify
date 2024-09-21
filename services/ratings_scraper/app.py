@@ -5,7 +5,7 @@ import os
 import utils.scraping.popups as popups
 from src.ratings import get_rating
 import constants as const
-import src.data as data
+import utils.data as data
 from src.driver import driver
 from utils.logging import logger
 
