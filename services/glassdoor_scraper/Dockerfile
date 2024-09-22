@@ -1,6 +1,9 @@
 # We use an official Python runtime as a parent image
 FROM python:3.11-slim
 
+# Set the environment variable to prevent Poetry from creating a virtual environment
+ENV POETRY_VIRTUALENVS_CREATE=false
+
 # Set the working directory in the container
 WORKDIR /app
 
