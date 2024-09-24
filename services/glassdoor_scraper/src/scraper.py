@@ -1,13 +1,12 @@
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from driver import driver
+from src.driver import get_driver
 
 class GlassdoorScraperSelenium:
     def __init__(self, base_url):
         self.base_url = base_url
-        self.driver = driver
+        self.driver = get_driver()
 
     def get_company_data(self, company_name):
         search_url = f"{self.base_url}/Reviews/{company_name}-reviews-SRCH_KE0,{len(company_name)}.htm"
