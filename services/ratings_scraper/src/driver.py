@@ -13,6 +13,7 @@ config.add_argument("-height=1080")
 config.add_argument("--no-sandbox")
 config.add_argument("--disable-gpu")
 
-driver = webdriver.Chrome(options=config)
-driver.implicitly_wait(10)
-driver.get("https://www.google.com")
+def get_driver():
+    driver = webdriver.Chrome(options=config)
+    driver.implicitly_wait(10)
+    return driver

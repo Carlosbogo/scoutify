@@ -6,9 +6,10 @@ import utils.scraping.popups as popups
 from src.ratings import get_rating
 import constants as const
 import utils.data as data
-from src.driver import driver
+from src.driver import get_driver
 from utils.logging import logger
 
+driver = get_driver()
 
 download_path = os.path.join(const.DOWNLOADS_FOLDER, "remote_in_spain.csv")
 logger.info(f"Download path: {download_path}")
