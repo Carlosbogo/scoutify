@@ -1,12 +1,12 @@
-import logging
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from utils.logging import logger
 
 
 def reject_google_privacy_popup(
-    driver: webdriver, logger: logging.Logger = None, reject: bool = True
+    driver: webdriver, reject: bool = True
 ) -> None:
     deny_cookies_button = driver.find_element(
         By.XPATH, '//button[.//div[contains(text(), "Rechazar todo")]]'
