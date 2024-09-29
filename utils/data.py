@@ -1,7 +1,8 @@
 import csv
+import os
 import google.cloud.storage
 from utils.logging import logger
-from typing import List
+from typing import List, Optional
 
 
 def download_from_bucket(
@@ -54,18 +55,39 @@ def parse(filepath: str, delimiter: str = ",") -> List[List[str]]:
     return data
 
 
-def write_csv(data: List[List[str]], filepath: str, delimiter: str = ",") -> None:
+def create_csv(filepath: str, header: Optional[List[str]], delimiter: str = ",") -> None:
     """
-    Write a list of lists to a CSV file.
+    Create a CSV file with a header.
     Params:
-    - data: List[List[str]] - the data to write to the file.
-    - filepath: str - the path of the file to write.
+    - filepath: str - the path of the file to create.
+    - header: List[str] - the header of the file.
     - delimiter: str - the delimiter to use in the file.
 
     Returns:
     - None
     """
     with open(filepath, "w", newline="", encoding="utf8") as f:
+        writer = csv.writer(f, delimiter=delimiter)
+        if header:
+            writer.writerow(header)
+
+
+def write_csv(data: List[List[str]], filepath: str, header: Optional[List[str]], delimiter: str = ",") -> None:
+    """
+    Write a list of lists to a CSV file.
+    Params:
+    - data: List[List[str]] - the data to write to the file.
+    - header: List[str] - the header of the file.
+    - filepath: str - the path of the file to write.
+    - delimiter: str - the delimiter to use in the file.
+
+    Returns:
+    - None
+    """
+    if not os.path.exists(filepath):
+        create_csv(filepath, header, delimiter)
+
+    with open(filepath, "a", newline="", encoding="utf8") as f:
         writer = csv.writer(f, delimiter=delimiter)
         writer.writerows(data)
 
