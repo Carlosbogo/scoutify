@@ -22,7 +22,7 @@ def handle_glassdoor_cookies_popup(
     driver: webdriver, accept: bool = True
 ) -> None:
     accept_cookies_button = driver.find_element(
-        By.XPATH, '//button[.//div[contains(text(), "Aceptar las cookies")]]'
+        By.ID, 'onetrust-accept-btn-handler'
     )
     driver.implicitly_wait(10)
     WebDriverWait(driver, 10).until(
