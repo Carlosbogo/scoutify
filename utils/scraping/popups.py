@@ -16,3 +16,16 @@ def reject_google_privacy_popup(
         EC.element_to_be_clickable(deny_cookies_button)
     ).click()
     logger.info("Google Privacy Popup rejected.")
+
+
+def handle_glassdoor_cookies_popup(
+    driver: webdriver, accept: bool = True
+) -> None:
+    accept_cookies_button = driver.find_element(
+        By.XPATH, '//button[.//div[contains(text(), "Aceptar las cookies")]]'
+    )
+    driver.implicitly_wait(10)
+    WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable(accept_cookies_button)
+    ).click()
+    logger.info("Glassdoor Cookies Popup accepted.")
