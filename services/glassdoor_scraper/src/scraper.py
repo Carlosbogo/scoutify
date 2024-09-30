@@ -31,12 +31,16 @@ def get_companies_in_page(driver: Driver) -> list[WebElement]:
             company_data['reviews'] = None
 
 
-    def get_all_companies(self, max_pages=15):
-        companies_data = []
-        for page in range(1, max_pages + 1):
-            search_url = f"{self.base_url}/Reviews/company-reviews-SRCH_IL.0,0_IN0_IP{page}.htm"
-            self.driver.get(search_url)
-            time.sleep(2)  # Wait for the page to load
+def get_company_info(driver: Driver, company: WebElement, get_locations: bool = False):
+    time.sleep(random.uniform(0.1, 0.3))
+    company_name = company.find_element(By.XPATH, ".//h2[@data-test='employer-short-name']").text
+    company_rating = company.find_element(By.XPATH, ".//span[@data-test='rating']").text.replace(",", ".")
+    review_string = company.find_element(By.XPATH, ".//h3[@data-test='cell-Reviews-count']").text
+    review_count = format_reviews_string(review_string)
+    if get_locations:
+        locations = get_company_locations(driver, company)
+    logger.info(f"Company: {company_name} - Rating: {company_rating} - Reviews: {review_count}")
+    return [company_name, company_rating, review_count]
 
 
             for company_element in company_elements:
