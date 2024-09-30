@@ -43,27 +43,11 @@ def get_company_info(driver: Driver, company: WebElement, get_locations: bool = 
     return [company_name, company_rating, review_count]
 
 
-            for company_element in company_elements:
-                try:
-                    company_name_element = company_element.find_element(By.CLASS_NAME, 'company-tile-name')
-                    company_name = company_name_element.text.strip()
-                    print(f"Getting data for {company_name}")
-                    company_data = self.get_company_data(company_name)
-                    if company_data:
-                        companies_data.append({company_name: company_data})
-                except:
-                    continue
-
-            time.sleep(1)  # Be polite and don't hammer the server
-
-        return companies_data
-
-    def close(self):
-        self.driver.quit()
-
-if __name__ == "__main__":
-    scraper = GlassdoorScraperSelenium(base_url="https://www.glassdoor.com")
-    all_companies_data = scraper.get_all_companies()
-    for company in all_companies_data:
-        print(company)
-    scraper.close()
+def click_next_page(driver: Driver):
+    try:
+        WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//button[@data-test='pagination-next']"))
+        ).uc_click()
+    except TimeoutError:
+        logger.error("Next page button not found")
+        raise Exception("Next page button not found")
