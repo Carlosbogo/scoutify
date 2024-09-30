@@ -66,7 +66,8 @@ def create_csv(filepath: str, header: Optional[List[str]], delimiter: str = ",")
     Returns:
     - None
     """
-    with open(filepath, "w", newline="", encoding="utf8") as f:
+    logger.info(f"Creating file {filepath}.")
+    with open(filepath, "w+", newline="", encoding="utf8") as f:
         writer = csv.writer(f, delimiter=delimiter)
         if header:
             writer.writerow(header)
