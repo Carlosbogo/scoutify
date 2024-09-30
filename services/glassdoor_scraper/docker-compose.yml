@@ -1,6 +1,6 @@
 services:
   app:
-    image: gcr.io/companies-parser/glassdoor-parser
+    image: gcr.io/companies-parser/glassdoor-scraper:1.1.0
     working_dir: /app
     volumes:
       - .:/app
