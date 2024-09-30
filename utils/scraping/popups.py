@@ -20,12 +20,16 @@ def reject_google_privacy_popup(
 
 def handle_glassdoor_cookies_popup(
     driver: webdriver, accept: bool = True
-) -> None:
-    accept_cookies_button = driver.find_element(
-        By.ID, 'onetrust-accept-btn-handler'
-    )
-    driver.implicitly_wait(10)
-    WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable(accept_cookies_button)
-    ).click()
-    logger.info("Glassdoor Cookies Popup accepted.")
+) -> bool:
+    try:
+        accept_cookies_button = driver.find_element(
+            By.ID, 'onetrust-accept-btn-handler'
+        )
+        WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(accept_cookies_button)
+        ).click()
+        logger.info("Glassdoor Cookies Popup accepted.")
+        return True
+    except Exception as e:
+        logger.error(f"Error handling Glassdoor Cookies Popup: {e}")
+        return False
