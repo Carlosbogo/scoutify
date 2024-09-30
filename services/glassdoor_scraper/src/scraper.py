@@ -1,19 +1,20 @@
 import time
-from selenium import webdriver
+import random
+from seleniumbase import Driver
+from seleniumbase.undetected.webelement import WebElement
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.common.by import By
-from src.driver import get_driver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from src.helpers import format_reviews_string
+from utils.logging import logger
 
-class GlassdoorScraperSelenium:
-    def __init__(self, base_url):
-        self.base_url = base_url
-        self.driver = get_driver()
 
     def get_company_data(self, company_name):
         search_url = f"{self.base_url}/Reviews/{company_name}-reviews-SRCH_KE0,{len(company_name)}.htm"
         self.driver.get(search_url)
         time.sleep(2)  # Wait for the page to load
 
-        company_data = {}
 
         # Example: Extract company rating
         try:
@@ -29,7 +30,6 @@ class GlassdoorScraperSelenium:
         except:
             company_data['reviews'] = None
 
-        return company_data
 
     def get_all_companies(self, max_pages=15):
         companies_data = []
@@ -38,7 +38,6 @@ class GlassdoorScraperSelenium:
             self.driver.get(search_url)
             time.sleep(2)  # Wait for the page to load
 
-            company_elements = self.driver.find_elements(By.CLASS_NAME, 'company-tile')
 
             for company_element in company_elements:
                 try:
