@@ -10,10 +10,10 @@ from src.helpers import format_reviews_string
 from utils.logging import logger
 
 
-    def get_company_data(self, company_name):
-        search_url = f"{self.base_url}/Reviews/{company_name}-reviews-SRCH_KE0,{len(company_name)}.htm"
-        self.driver.get(search_url)
-        time.sleep(2)  # Wait for the page to load
+def get_companies_in_page(driver: Driver) -> list[WebElement]:
+    time.sleep(random.uniform(3.5, 5))
+    companies = driver.find_elements(By.XPATH, "//div[@data-test='employer-card-single']")
+    return companies
 
 
         # Example: Extract company rating
