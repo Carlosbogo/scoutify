@@ -55,7 +55,7 @@ logger.info(f"Last page scraped: {current_page}")
 data.upload_to_bucket(
     const.COMPANIES_BUCKET_NAME,
     "companies.csv",
-    f"companies-{const.STARTING_PAGE_NUMBER}-{current_page}.csv",
+    f"{execution_id}-{const.MIN_RATING}/companies-{const.STARTING_PAGE_NUMBER}-{current_page}.csv",
     const.GCP_PROJECT
 )
 
