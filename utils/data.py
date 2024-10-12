@@ -93,6 +93,7 @@ def write_csv(data: List[List[str]], filepath: str, header: Optional[List[str]],
     with open(filepath, "a", newline="", encoding="utf8") as f:
         writer = csv.writer(f, delimiter=delimiter)
         writer.writerows(data)
+        logger.info(f"Data written to {filepath}.")
 
 
 def upload_to_bucket(
