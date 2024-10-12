@@ -60,7 +60,10 @@ def get_company_locations(driver: Driver,company: WebElement):
 def get_company_info(driver: Driver, company: WebElement, get_locations: bool = False):
     time.sleep(random.uniform(0.1, 0.3))
     company_name = company.find_element(By.XPATH, ".//h2[@data-test='employer-short-name']").text
-    company_rating = company.find_element(By.XPATH, ".//span[@data-test='rating']").text.replace(",", ".")
+    try:
+        company_rating = company.find_element(By.XPATH, ".//span[@data-test='rating']").text.replace(",", ".")
+    except NoSuchElementException:
+        company_rating = "0.0"
     review_string = company.find_element(By.XPATH, ".//h3[@data-test='cell-Reviews-count']").text
     review_count = format_reviews_string(review_string)
 
