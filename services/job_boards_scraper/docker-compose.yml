@@ -1,0 +1,15 @@
+services:
+  app:
+    image: gcr.io/companies-parser/job-boards-scraper:1.0
+    working_dir: /app
+    volumes:
+      - .:/app
+      - ../../utils:/app/utils
+    env_file:
+      - .env
+    ports:
+      - "80:80"
+    command: python app.py
+    build:
+      context: .
+      dockerfile: Dockerfile
