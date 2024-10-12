@@ -11,6 +11,7 @@ driver = get_driver()
 
 # Execution ID to identify the data uploaded to the bucket
 execution_id = str(uuid.uuid4())[:8]
+logger.info(f"Execution ID: {execution_id}")
 
 logger.info("User agent: " + driver.execute_script("return navigator.userAgent;"))
 current_page = const.STARTING_PAGE_NUMBER
@@ -62,3 +63,4 @@ data.upload_to_bucket(
 )
 
 logger.info("Scraping finished. Data uploaded to bucket.")
+logger.info(f"Execution ID: {execution_id}")
