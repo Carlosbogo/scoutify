@@ -7,7 +7,7 @@ from typing import List, Optional
 
 def download_from_bucket(
     bucket_name: str, source_blob_name: str, destination_file_name: str, gcp_project: str
-) -> None:
+) -> str:
     """
     Downloads a blob from the specified bucket.
     Params:
@@ -30,6 +30,8 @@ def download_from_bucket(
         logger.error(f"Error downloading blob {source_blob_name}: {e}")
 
     logger.info(f"Blob {source_blob_name} downloaded to {destination_file_name}.")
+
+    return destination_file_name
 
 
 def parse(filepath: str, delimiter: str = ",") -> List[List[str]]:
