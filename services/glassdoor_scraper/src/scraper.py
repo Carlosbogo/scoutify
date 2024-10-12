@@ -84,3 +84,6 @@ def click_next_page(driver: Driver):
     except TimeoutError:
         logger.error("Next page button not found")
         raise Exception("Next page button not found")
+    except Exception as e:
+        logger.error(f"Error clicking next page: {e}")
+        raise Exception(f"Error clicking next page: {e}")
